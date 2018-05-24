@@ -24,18 +24,18 @@ public class MyURLClassLoader extends URLClassLoader {
 
     public static void main(String[] args) throws ClassNotFoundException, MalformedURLException {
         //url类加载器可以加载任何目录下的类文件
-        String rootDir= Thread.currentThread().getContextClassLoader().getResource("").getPath();
+        String rootDir = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         //创建自定义文件类加载器
         File file = new File(rootDir);
         //File to URI
-        URI uri=file.toURI();
-        URL[] urls={uri.toURL()};
+        URI uri = file.toURI();
+        URL[] urls = {uri.toURL()};
 
         MyURLClassLoader loader = new MyURLClassLoader(urls);
 
         try {
             //加载指定的class文件
-            Class<?> object1=loader.loadClass("com.core.bean.DemoObj");
+            Class<?> object1 = loader.loadClass("com.core.bean.DemoObj");
             System.out.println(object1.newInstance().toString());
 
             //输出结果:I am Obj
